@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html>
-<body>
-  <h1>Kalkulator</h1>
-  <input id="a" type="number" placeholder="Angka 1">
-  <input id="b" type="number" placeholder="Angka 2">
-  <button onclick="calc()">Hitung</button>
-  <p id="hasil"></p>
-
-  <script>
-    function calc(){
-      let a = Number(document.getElementById('a').value);
-      let b = Number(document.getElementById('b').value);
-      document.getElementById('hasil').textContent = "Hasil: " + (a + b);
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
-  </script>
+
+    .btn {
+      font-size: 40px;
+      font-weight: bold;
+      padding: 20px 40px;
+      background: linear-gradient(to right, cyan, magenta);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-shadow: 2px 2px 10px black;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="btn">CALCULATOR</button>
+
 </body>
 </html>
