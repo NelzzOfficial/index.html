@@ -1,7 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url('https://i.imgur.com/1nN9z8W.jpeg'); /* Gambar anime neon */
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    /* TEKS CALCULATOR GLITCH */
+    .glitch {
+        font-size: 60px;
+        font-weight: bold;
+        color: #00aaff;
+        position: relative;
+        text-transform: uppercase;
+        animation: flicker 1s infinite;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .glitch::before,
+    .glitch::after {
+        content: "Calculator";
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.7;
+    }
+
+    .glitch::before {
+        color: #ff00ff;
+        transform: translate(-3px, -2px);
+        animation: glitch1 1s infinite;
+    }
+
+    .glitch::after {
+        color: #00ffff;
+        transform: translate(3px, 2px);
+        animation: glitch2 1s infinite;
+    }
+
+    @keyframes glitch1 {
+        0% { transform: translate(-2px, -2px); }
+        20% { transform: translate(-5px, 2px); }
+        40% { transform: translate(3px, -1px); }
+        60% { transform: translate(-3px, 1px); }
+        100% { transform: translate(-2px, -2px); }
+    }
+
+    @keyframes glitch2 {
+        0% { transform: translate(2px, 2px); }
+        20% { transform: translate(5px, -1px); }
+        40% { transform: translate(-3px, 2px); }
+        60% { transform: translate(3px, -2px); }
+        100% { transform: translate(2px, 2px); }
+    }
+
+    @keyframes flicker {
+        0% { opacity: 1; }
+        50% { opacity: .85; }
+        100% { opacity: 1; }
+    }
+</style>
+</head>
 <body>
-  <h1>Halaman Start</h1>
-  <a href="kalkulator.html">Buka Kalkulator</a>
+
+<a href="kalkulator.html" class="glitch">Calculator</a>
+
 </body>
 </html>
