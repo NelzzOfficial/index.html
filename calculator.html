@@ -1,27 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator Nelzz</title>
+
 <style>
-    /* TEMA DARK */
-    .dark-theme {
-        background-color: #000;
-        color: #fff;
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        transition: 0.3s;
     }
 
-    /* TEMA LIGHT */
-    .light-theme {
-        background-color: #fff;
+    /* LIGHT MODE */
+    .light {
+        background: #ffffff;
         color: #000;
     }
 
-    /* AGAR TEKS TETAP TERLIHAT DI DARK MODE */
-    .dark-theme #calculator button,
-    .dark-theme #display {
-        color: #fff !important;
-        background-color: rgba(255, 255, 255, 0.15);
+    /* DARK MODE */
+    .dark {
+        background: #000000;
+        color: #fff;
     }
 
-    /* AGAR TEKS TERLIHAT DI LIGHT MODE */
-    .light-theme #calculator button,
-    .light-theme #display {
-        color: #000 !important;
-        background-color: rgba(0, 0, 0, 0.08);
+    /* Display */
+    #display {
+        width: 80%;
+        height: 60px;
+        font-size: 30px;
+        margin-top: 20px;
+        border-radius: 10px;
+        border: none;
+        text-align: right;
+        padding: 10px;
+    }
+
+    .light #display {
+        background: #f0f0f0;
+        color: #000;
+    }
+
+    .dark #display {
+        background: #222;
+        color: #fff;
+    }
+
+    /* Buttons */
+    .btn {
+        width: 70px;
+        height: 70px;
+        font-size: 24px;
+        margin: 8px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .light .btn {
+        background: #e3e3e3;
+        color: #000;
+    }
+
+    .dark .btn {
+        background: #333;
+        color: #fff;
+    }
+
+    /* Theme toggle button */
+    #themeBtn {
+        margin-top: 15px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .light #themeBtn {
+        background: #111;
+        color: #fff;
+    }
+
+    .dark #themeBtn {
+        background: #fff;
+        color: #000;
     }
 </style>
+
+</head>
+<body class="dark">
+
+<h1>Kalkulator Nelzz</h1>
+
+<button id="themeBtn" onclick="toggleTheme()">Light/Dark Mode</button>
+
+<br>
+
+<input type="text" id="display" disabled>
+
+<div id="calculator">
+    <br>
+    <button class="btn" onclick="press('7')">7</button>
+    <button class="btn" onclick="press('8')">8</button>
+    <button class="btn" onclick="press('9')">9</button>
+    <button class="btn" onclick="press('/')">÷</button>
+    <br>
+    <button class="btn" onclick="press('4')">4</button>
+    <button class="btn" onclick="press('5')">5</button>
+    <button class="btn" onclick="press('6')">6</button>
+    <button class="btn" onclick="press('*')">×</button>
+    <br>
+    <button class="btn" onclick="press('1')">1</button>
+    <button class="btn" onclick="press('2')">2</button>
+    <button class="btn" onclick="press('3')">3</button>
+    <button class="btn" onclick="press('-')">−</button>
+    <br>
+    <button class="btn" onclick="press('0')">0</button>
+    <button class="btn" onclick="press('.')">.</button>
+    <button class="btn" onclick="calculate()">=</button>
+    <button class="btn" onclick="press('+')">+</button>
+    <br>
+    <button class="btn" onclick="clearDisplay()" style="width:160px">Clear</button>
+</div>
+
+<script>
+    function press(num) {
+        document.getElementById("display").value += num;
+    }
+
+    function clearDisplay() {
+        document.getElementById("display").value = "";
+    }
+
+    function calculate() {
+        let exp = document.getElementById("display").value;
+        try {
+            document.getElementById("display").value = eval(exp);
+        } catch {
+            document.getElementById("display").value = "Error";
+        }
+    }
+
+    function toggleTheme() {
+        let body = document.body;
+        if (body.classList.contains("dark")) {
+            body.classList.remove("dark");
+            body.classList.add("light");
+        } else {
+            body.classList.remove("light");
+            body.classList.add("dark");
+        }
+    }
+</script>
+
+</body>
+                                                  </html>
