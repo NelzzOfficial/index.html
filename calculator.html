@@ -1,159 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Calculator - Nelzz Web</title>
-
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        transition: 0.3s;
-    }
-
-    /* DARK MODE */
+    /* TEMA DARK */
     .dark-theme {
-        background-color: #000000;
-        color: white;
+        background-color: #000;
+        color: #fff;
     }
 
-    /* LIGHT MODE */
+    /* TEMA LIGHT */
     .light-theme {
-        background-color: white;
-        color: black;
+        background-color: #fff;
+        color: #000;
     }
 
-    h1 {
-        text-align: center;
-        margin-top: 20px;
-        font-size: 32px;
-        font-weight: bold;
-        color: #4da3ff;
-        text-shadow: 0px 0px 8px #4da3ff;
+    /* AGAR TEKS TETAP TERLIHAT DI DARK MODE */
+    .dark-theme #calculator button,
+    .dark-theme #display {
+        color: #fff !important;
+        background-color: rgba(255, 255, 255, 0.15);
     }
 
-    #toggleMode {
-        display: block;
-        margin: 10px auto;
-        padding: 10px 20px;
-        font-size: 18px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-    }
-
-    #calculator {
-        width: 300px;
-        background: rgba(255, 255, 255, 0.05);
-        padding: 20px;
-        margin: 30px auto;
-        border-radius: 10px;
-    }
-
-    #display {
-        width: 100%;
-        height: 50px;
-        font-size: 22px;
-        text-align: right;
-        margin-bottom: 10px;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-    }
-
-    .btn-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-    }
-
-    button {
-        padding: 15px;
-        font-size: 18px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: 0.2s;
-        color: inherit;
-        background-color: rgba(255,255,255,0.15);
-    }
-
-    button:active {
-        transform: scale(0.95);
+    /* AGAR TEKS TERLIHAT DI LIGHT MODE */
+    .light-theme #calculator button,
+    .light-theme #display {
+        color: #000 !important;
+        background-color: rgba(0, 0, 0, 0.08);
     }
 </style>
-</head>
-
-<body class="dark-theme">
-
-<h1>Nelzz Web</h1>
-
-<button id="toggleMode">Dark Mode</button>
-
-<div id="calculator">
-    <input type="text" id="display" disabled>
-
-    <div class="btn-grid">
-        <button onclick="inputValue('7')">7</button>
-        <button onclick="inputValue('8')">8</button>
-        <button onclick="inputValue('9')">9</button>
-        <button onclick="inputValue('/')">÷</button>
-
-        <button onclick="inputValue('4')">4</button>
-        <button onclick="inputValue('5')">5</button>
-        <button onclick="inputValue('6')">6</button>
-        <button onclick="inputValue('*')">×</button>
-
-        <button onclick="inputValue('1')">1</button>
-        <button onclick="inputValue('2')">2</button>
-        <button onclick="inputValue('3')">3</button>
-        <button onclick="inputValue('-')">-</button>
-
-        <button onclick="inputValue('0')">0</button>
-        <button onclick="inputValue('.')">.</button>
-        <button onclick="clearDisplay()">C</button>
-        <button onclick="inputValue('+')">+</button>
-
-        <button style="grid-column: span 4; background:#4da3ff;" onclick="calculate()">=</button>
-    </div>
-</div>
-
-<script>
-    const display = document.getElementById("display");
-    const toggleBtn = document.getElementById("toggleMode");
-    let mode = "dark";
-
-    function inputValue(val) {
-        display.value += val;
-    }
-
-    function clearDisplay() {
-        display.value = "";
-    }
-
-    function calculate() {
-        try {
-            display.value = eval(display.value);
-        } catch {
-            display.value = "Error";
-        }
-    }
-
-    toggleBtn.addEventListener("click", () => {
-        if (mode === "dark") {
-            document.body.classList.remove("dark-theme");
-            document.body.classList.add("light-theme");
-            toggleBtn.textContent = "Light Mode";
-            mode = "light";
-        } else {
-            document.body.classList.remove("light-theme");
-            document.body.classList.add("dark-theme");
-            toggleBtn.textContent = "Dark Mode";
-            mode = "dark";
-        }
-    });
-</script>
-
-</body>
-</html>
