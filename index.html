@@ -1,54 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: black;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            font-family: Arial, sans-serif;
-            color: white;
-        }
-
-        h1 {
-            font-size: 35px;
-            color: cyan;
-            text-shadow: 0 0 20px cyan;
-            margin-bottom: 40px;
-        }
-
-        .start-btn {
-            padding: 15px 40px;
-            font-size: 22px;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(90deg, magenta, cyan);
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 0 20px cyan;
-        }
-
-        .start-btn:active {
-            transform: scale(0.95);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Nelzz AI</title>
 </head>
-<body>
+<body style="background:#111;color:white;font-family:sans-serif;padding:20px;">
+  <h2>Nelzz AI Chat</h2>
 
-    <h1>Welcome</h1>
+  <div id="chat" style="height:300px;overflow:auto;border:1px solid #444;padding:10px;margin-bottom:10px;"></div>
 
-    <button class="start-btn" onclick="location.href='calculator.html'">
-        START
-    </button>
+  <input id="msg" placeholder="Tulis pesan..." style="width:80%;padding:8px;">
+  <button onclick="kirim()">Kirim</button>
+
+<script>
+async function kirim() {
+  const teks = document.getElementById("msg").value;
+  if (!teks) return;
+
+  chat.innerHTML += "<div><b>Lu:</b> " + teks + "</div>";
+  document.getElementById("msg").value = "";
+
+  const r = await fetch("ai.php", {
+    method: "POST",
+    headers: { "Content-Type":"application/json" },
+    body: JSON.stringify({ message: teks })
+  });
+
+  const data = await r.json();
+  const balasan = data.choices[0].message.content;
+
+  chat.innerHTML += "<div><b>AI:</b> " + balasan + "</div>";
+}
+</script>
 
 </body>
 </html>
